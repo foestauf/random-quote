@@ -11,8 +11,8 @@ div {
 }
 
 body {
-  background-color: #333;
-  color: #333;
+  background-color: gray;
+  color: #ffffff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -43,7 +43,7 @@ body {
   width: 500px;
   padding: 40px 50px;
   display: table;
-  background-color: #ffffff;
+  background-color: gray;
 }
 
 #quote-box .quote-text {

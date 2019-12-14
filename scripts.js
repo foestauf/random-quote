@@ -1,3 +1,5 @@
+const projectName = "random-quote-machine";
+localStorage.setItem('example_project', 'Random Quote Machine');
 var colors = ['#16a085', '#27ae60', '#2c3e50', '#f39c12', '#e74c3c', '#9b59b6', '#FB6964', '#342224', "#472E32", "#BDBB99", "#77B1A9", "#73A857"];
 var currentQuote = '', currentAuthor = '';
 let quotesData;
@@ -30,7 +32,6 @@ function getQuote() {
     if (inIframe()) {
         $('#tweet-quote').attr('href', 'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + encodeURIComponent('"' + currentQuote + '" ' + currentAuthor));
 
-        $('#tumblr-quote').attr('href', 'https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=' + encodeURIComponent(currentAuthor) + '&content=' + encodeURIComponent(currentQuote) + '&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button');
     }
 
     $(".quote-text").animate(
@@ -50,8 +51,10 @@ function getQuote() {
             $('#author').html(randomQuote.author);
         }
     );
-    var color = Math.floor(Math.random() * colors.length);
-    $("html body").animate(
+    let color = Math.floor(Math.random() * colors.length);
+    // console.log(color);
+    console.log(colors[color]);
+    $("html, body").animate(
         {
             backgroundColor: colors[color],
             color: colors[color]
@@ -65,7 +68,7 @@ function getQuote() {
         1000
     );
 }
-$(document).ready(function() {
+$(document).ready(function () {
     getQuotes().then(() => {
         getQuote();
     });
@@ -74,12 +77,6 @@ $(document).ready(function() {
     $('#tweet-quote').on('click', function () {
         if (!inIframe()) {
             openURL('https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + encodeURIComponent('"' + currentQuote + '" ' + currentAuthor));
-        }
-    });
-
-    $('#tumblr-quote').on('click', function () {
-        if (!inIframe()) {
-            openURL('https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=' + encodeURIComponent(currentAuthor) + '&content=' + encodeURIComponent(currentQuote) + '&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button');
         }
     });
 });
